@@ -1,0 +1,41 @@
+features:
+############
+features:install transaction
+features:install jndi
+features:install jpa
+features:install jpa-hibernate
+
+bundles:
+##############################################################################################
+install -s mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-dbcp/1.4_3
+install -s mvn:com.oracle/ojdbc6-wrapped/11.2.0.4
+install -s mvn:org.redhat.support/database-pool/1.0.4-SNAPSHOT
+install -s mvn:fuse-pocs/fuse-pocs-blueprint-hibernate42-bundle/666.0-SNAPSHOT
+install -s mvn:org.redhat.support/service-consumer/1.0-SNAPSHOT
+
+osgi:list
+#############################################################################
+[ 251] [Active     ] [            ] [       ] [   60] Apache ServiceMix :: Bundles :: commons-dbcp (1.4.0.3)
+[ 252] [Active     ] [            ] [       ] [   60] Oracle OJDBC6 Wrapped Bundle (11.2.0.4)
+[ 253] [Active     ] [Created     ] [       ] [   60] Database Services (1.0.4.SNAPSHOT)
+[ 264] [Active     ] [            ] [       ] [   60] Apache ServiceMix :: Bundles :: antlr (2.7.7.5)
+[ 265] [Active     ] [            ] [       ] [   60] Apache ServiceMix :: Bundles :: ant (1.8.2.2)
+[ 266] [Active     ] [            ] [       ] [   60] Apache ServiceMix :: Bundles :: dom4j (1.6.1.5)
+[ 267] [Active     ] [            ] [       ] [   60] Apache ServiceMix :: Bundles :: serp (1.14.1.1)
+[ 268] [Active     ] [            ] [       ] [   60] ClassMate (0.9.0)
+[ 269] [Active     ] [            ] [       ] [   60] Javassist (3.18.1.GA)
+[ 270] [Active     ] [            ] [       ] [   60] JACC 1.4 API (1.0.2.Final)
+[ 271] [Active     ] [            ] [       ] [   60] wrap_mvn_org.jboss_jandex_1.1.0.Final (0)
+[ 272] [Active     ] [            ] [       ] [   60] JBoss Logging 3 (3.1.4.GA)
+[ 273] [Active     ] [            ] [       ] [   60] hibernate-commons-annotations (4.0.4.Final)
+[ 274] [Active     ] [            ] [       ] [  100] hibernate-core (4.2.9.Final)
+[ 275] [Active     ] [            ] [       ] [  100] hibernate-entitymanager (4.2.9.Final)
+[ 276] [Active     ] [            ] [       ] [  100] hibernate-osgi (4.2.9.Final)
+[ 277] [Active     ] [Created     ] [       ] [   60] Fuse POC Blueprint Hibernate (666.0.0.SNAPSHOT)
+[ 278] [Active     ] [Created     ] [       ] [   60] A Camel Blueprint Route (1.0.0.SNAPSHOT)
+
+
+Method doStuff() in the service-consumer bundle access personService interface to do save, saveAndRollback and findByName operations on the Person object. 
+Transaction can be tested by calling saveAndRollback method which attempts to save the person objects and throws CustomRollbackException where the execution rolls back 
+and the use will not be saved into the database. However calling the save method of the interface saves the person object into the database ok.
+Calling findByName method on the inteface checks the existance of the user in the database.
