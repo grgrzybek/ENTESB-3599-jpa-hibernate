@@ -3,15 +3,17 @@ features:
 features:install transaction
 features:install jndi
 features:install jpa
-features:install jpa-hibernate
+features:install hibernate
 
 bundles:
 ##############################################################################################
 install -s mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-dbcp/1.4_3
-install -s mvn:com.oracle/ojdbc6-wrapped/11.2.0.4
+install -s wrap:mvn:org.postgresql/postgresql/9.3-1102-jdbc41
 install -s mvn:org.redhat.support/database-pool/1.0.4-SNAPSHOT
 install -s mvn:fuse-pocs/fuse-pocs-blueprint-hibernate42-bundle/666.0-SNAPSHOT
 install -s mvn:org.redhat.support/service-consumer/1.0-SNAPSHOT
+
+install -s mvn:com.oracle/ojdbc6-wrapped/11.2.0.4
 
 osgi:list
 #############################################################################
